@@ -41,7 +41,6 @@ BlogPost has a 'likes' counter, with a 'setLikes' function, that is passed to th
 
 ### Two different configuration examples
 
-...
 Infinite like
 {...{
     label: 'Like',
@@ -58,4 +57,3 @@ Only one like
     onClick: () => setLikes(likes+1),
     multileClicks: false,
 }}
-...
