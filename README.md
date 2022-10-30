@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# Exchangeable LikeButton Component
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This Exercise consists on creating a LikeButton that can be used anywhere in the app.
+The onClick function must be abstract to  implement functions sent on props.
 
-## Available Scripts
+## Docs
 
-In the project directory, you can run:
+### Properties
 
-### `npm start`
+label (dom elements)
+labelOnClicked (dom elements)
+onClick (function)
+multileClicks (boolean)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### The 'label' and 'labelOnClicked' properties
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The 'label' property sets the button label when the button IS NOT 'liked'.
+The 'labelOnClicked' property sets the button label when the button IS 'liked'.
+Both os them can be ignored, but a default label will be used instead
 
-### `npm test`
+> If 'label' is ignored, default label will be used.
+> If 'labelOnClicked' is ignored, 'label' will be used (if default, default will be used)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Both 'label' and 'labelOnClicked' can be any DOM element you want. Strings, HTML, SVG, Other React Compoentents 
 
-### `npm run build`
+#### The 'onClick' property
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+onClick receives a function that will be executed IF the button is not 'liked'.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### The 'multileClicks' property
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This boolean property, if 'true', will allow LikeButton to execute the setted onClick function everytime LikeButton is clicked.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Example
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### LikeButton on Blog Posts
+The attached example implements LikeButton on a Blog environment.
+BlogPost has a 'likes' counter, with a 'setLikes' function, that is passed to the LikeButton 'onClick' property, then LikeButton implements this function as configured
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Two different configuration examples
 
-## Learn More
+...
+Infinite like
+{...{
+    label: 'Like',
+    onClick: () => setLikes(likes+1),
+    multileClicks: true,
+}}
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+or
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Only one like
+{...{
+    label: 'Like',
+    labelOnClicked: 'Liked',
+    onClick: () => setLikes(likes+1),
+    multileClicks: false,
+}}
+...

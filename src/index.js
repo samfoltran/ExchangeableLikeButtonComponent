@@ -1,17 +1,42 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+import {LikeButton} from './LikeButton.js';
+
+function BlogPost(props){
+
+  const [likes, setLikes] = useState(0);
+
+  return(
+    <article>
+      <h1>{props.title}</h1>
+      <p>{props.text}</p>
+
+      <p>This post has <strong>{likes}</strong> likes.</p>
+
+      <LikeButton
+        {...{
+          label: 'Like',
+          onClick: () => setLikes(likes+1),
+          multileClicks: true,
+        }}
+      />
+    </article>
+  );
+
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+  <section>
+    <BlogPost
+      title='This is a BlogPost'
+      text='This text os really awesome. You can let it go without givin attention to it!'
+    />
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+    <BlogPost
+      title='This is another BlogPost'
+      text='The first text was good. But this one is really better!'
+    />
+  </section>
+);
